@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphique des Commits</title>
+    <!-- Inclure Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div style="width: 80%; margin: auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    // Données de test pour le nombre de commits minute par minute
+    const commitsData = [
+        { timestamp: '2024-02-12T09:00:00', commits: 3 },
+        { timestamp: '2024-02-12T09:01:00', commits: 5 },
+        { timestamp: '2024-02-12T09:02:00', commits: 2 },
+        // Ajoutez plus de données de cette manière...
+    ];
+
+    // Extraire les étiquettes (timestamps) et les valeurs (nombre de commits) des données
+    const timestamps = commitsData.map(data => data.timestamp);
+    const commits = commitsData.map(data => data.commits);
+
+    // Créer le graphique
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: 'Commits par minute',
+                data: commits,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'minute'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temps'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Commits'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
