@@ -48,14 +48,14 @@
     function createChart(data) {
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar', // Utilisation d'un graphique en barres
             data: {
                 labels: data.timestamps,
                 datasets: [{
                     label: 'Commits par minute',
                     data: data.commits,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)', // Couleur de fond des barres
+                    borderColor: 'rgba(54, 162, 235, 1)', // Couleur de bordure des barres
                     borderWidth: 1
                 }]
             },
